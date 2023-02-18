@@ -12,8 +12,8 @@ def build_tables(db: Database):
     """
     Build the SQLite database structure.
     """
-    establishments_table: Table = db.table("establishments", db=db)  # type: ignore
-    inspections_table: Table = db.table("inspections", db=db)  # type: ignore
+    establishments_table: Table = db.table("establishments")  # type: ignore
+    inspections_table: Table = db.table("inspections")  # type: ignore
 
     if establishments_table.exists() is False:
         establishments_table.create(
