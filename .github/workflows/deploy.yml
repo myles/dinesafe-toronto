@@ -46,7 +46,7 @@ jobs:
 
       - id: build-database
         name: "Build the database 🗂️"
-        run: make setup
+        run: make build
 
       - id: deploy
         name: "Deploy datasets to Vercel 🚀"
