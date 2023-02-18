@@ -1,0 +1,63 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+  schedule:
+    - cron: "0 8 * * MON"  # Every Monday at 8am
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: "Checkout 🛎"
+        uses: actions/checkout@v2
+
+      - id: setup-python
+        name: "Setup Python ${{ matrix.python-version }} 🏗"
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - id: setup-poetry
+        name: "Setup Poetry 📝"
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+
+      - id: get-cache-poetry-directory
+        name: "Get poetry"s cache directory 🔎"
+        run: |
+          echo "::set-output name=dir::$(poetry config cache-dir)"
+
+      - id: cache-poetry-directory
+        name: "Cache poetry 📦"
+        uses: actions/cache@v3.0.11
+        with:
+          path: ${{ steps.get-cache-poetry-directory.outputs.dir }}
+          key: ${{ runner.os }}-poetry-${{ hashFiles("poetry.lock") }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - id: install-dependencies
+        name: "Install dependencies 👨🏻‍💻"
+        run: make setup
+
+      - id: build-database
+        name: "Build the database 🗂️"
+        run: make setup
+
+      - id: deploy
+        name: "Deploy datasets to Vercel 🚀"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT: dinesafe-toronto
+          VERCEL_SCOPE: team_zMUI4sQyIJCEJwCyZPlYaQ1b
+        run: |-
+          poetry run datasette publish vercel dinesafe.db \
+            --metadata metadata.json \
+            --token $VERCEL_TOKEN \
+            --project $VERCEL_PROJECT \
+            --scope $VERCEL_SCOPE

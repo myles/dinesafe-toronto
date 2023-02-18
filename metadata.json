@@ -1,0 +1,16 @@
+{
+  "title": "DineSafe Toronto — slothful-myles",
+  "about": "myles/slothful-myles--dinesafe-toronto",
+  "about_url": "https://github.com/myles/slotful-myles--dinesafe-toronto",
+  "description": "Datasette of the City of Toronto's DineSafe data.",
+  "databases": {
+    "dinesafe": {
+      "title": "Dinesafe",
+      "description": "DineSafe is Toronto Public Health’s food safety program that inspects all establishments serving and preparing food.",
+      "source": "Toronto Public Health",
+      "source_url": "https://open.toronto.ca/dataset/dinesafe/",
+      "license": "Open Government License - Toronto",
+      "license_url": "https://open.toronto.ca/dataset/dinesafe/"
+    }
+  }
+}
