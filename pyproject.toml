@@ -3,7 +3,7 @@ name = "dinesafe-toronto"
 version = "0.1.0"
 description = "Datasette of the City of Toronto's DineSafe data."
 authors = ["Myles Braithwaite <me@mylesbraithwaite.com>"]
-license = "BSD"
+license = "MIT"
 readme = "README.md"
 packages = [{include = "dinesafe_toronto"}]
 
