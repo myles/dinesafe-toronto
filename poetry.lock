@@ -53,6 +53,21 @@ python-multipart = "*"
 test = ["asgi-lifespan", "httpx (>=0.16)", "pytest", "pytest-asyncio", "pytest-cov", "starlette"]
 
 [[package]]
+name = "asgi-gzip"
+version = "0.2"
+description = "gzip middleware for ASGI applications, extracted from Starlette"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "asgi-gzip-0.2.tar.gz", hash = "sha256:719b8deb396e2646a80079cc199a0741ebc03a15760bbeda05fe748a58431ff1"},
+    {file = "asgi_gzip-0.2-py3-none-any.whl", hash = "sha256:ec8bcefdc0d8b828bbe3a997b0bde253f2e29a590ca5e539eee09e1822d64ef8"},
+]
+
+[package.extras]
+test = ["httpx", "pytest", "requests", "starlette", "trio"]
+
+[[package]]
 name = "asgiref"
 version = "3.6.0"
 description = "ASGI specs, helper code, and adapters"
@@ -412,6 +427,25 @@ uvicorn = ">=0.11"
 docs = ["blacken-docs", "codespell", "furo (==2022.9.29)", "sphinx-autobuild", "sphinx-copybutton"]
 rich = ["rich"]
 test = ["beautifulsoup4 (>=4.8.1)", "black (==22.10.0)", "blacken-docs (==1.12.1)", "cogapp (>=3.3.0)", "pytest (>=5.2.2)", "pytest-asyncio (>=0.17)", "pytest-timeout (>=1.4.2)", "pytest-xdist (>=2.2.1)", "trustme (>=0.7)"]
+
+[[package]]
+name = "datasette-gzip"
+version = "0.2"
+description = "Add gzip compression to Datasette"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "datasette-gzip-0.2.tar.gz", hash = "sha256:6ae8714e9fbc4d71b0a64d7833c13c641d9a98a615d57eaf4ad2abcb1658f0fd"},
+    {file = "datasette_gzip-0.2-py3-none-any.whl", hash = "sha256:d24d252234f5652a9e8f65a48090c816ab9a8af7ddc512a5d9363c55fbf5cd64"},
+]
+
+[package.dependencies]
+asgi-gzip = "*"
+datasette = "*"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio"]
 
 [[package]]
 name = "datasette-publish-vercel"
@@ -1280,4 +1314,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "b08e2c3327b4705d46b59b6cf6ccb2270ffd10837e9d4f593a29ee7ec5a91bdc"
+content-hash = "4f00e4eb0cf006bba14e74d11e9caa05289c2e79a1ab87218574ed4a6c2a07e2"
