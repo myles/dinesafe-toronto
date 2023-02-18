@@ -32,7 +32,7 @@ clean:
 	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 .PHONY: build
-build: dinesafe.db
+build:
 	poetry run dinesafe-toronto scrape-data ./dinesafe.db
 
 .PHONY: datasette
