@@ -8,7 +8,6 @@ on:
   schedule:
     - cron: "0 8 * * MON"  # Every Monday at 8am
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -29,7 +28,7 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
 
       - id: get-cache-poetry-directory
-        name: "Get poetry"s cache directory 🔎"
+        name: "Get poetry's cache directory 🔎"
         run: |
           echo "::set-output name=dir::$(poetry config cache-dir)"
 
@@ -38,7 +37,7 @@ jobs:
         uses: actions/cache@v3.0.11
         with:
           path: ${{ steps.get-cache-poetry-directory.outputs.dir }}
-          key: ${{ runner.os }}-poetry-${{ hashFiles("poetry.lock") }}
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
           restore-keys: ${{ runner.os }}-poetry-
 
       - id: install-dependencies
