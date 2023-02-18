@@ -27,8 +27,8 @@ def scrape_data(db_path: str):
 
     service.build_tables(db)
 
-    establishments_table: Table = db.table("establishments", db=db)  # type: ignore
-    inspections_table: Table = db.table("inspections", db=db)  # type: ignore
+    establishments_table: Table = db.table("establishments")  # type: ignore
+    inspections_table: Table = db.table("inspections")  # type: ignore
 
     dinesafe_data_url = service.get_dinesafe_data_url()
     dinesafe_data = service.get_dinesafe_data(dinesafe_data_url)
