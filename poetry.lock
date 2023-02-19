@@ -191,6 +191,25 @@ jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
 uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
+name = "bleach"
+version = "6.0.0"
+description = "An easy safelist-based HTML-sanitizing tool."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "bleach-6.0.0-py3-none-any.whl", hash = "sha256:33c16e3353dbd13028ab4799a0f89a83f113405c766e9c122df8a06f5b85b3f4"},
+    {file = "bleach-6.0.0.tar.gz", hash = "sha256:1a1a85c1595e07d8db14c5f09f09e6433502c51c595970edc090551f0db99414"},
+]
+
+[package.dependencies]
+six = ">=1.9.0"
+webencodings = "*"
+
+[package.extras]
+css = ["tinycss2 (>=1.1.0,<1.2)"]
+
+[[package]]
 name = "certifi"
 version = "2022.12.7"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -462,6 +481,25 @@ datasette = ">=0.50"
 test = ["httpx", "pytest", "pytest-asyncio"]
 
 [[package]]
+name = "datasette-dashboards"
+version = "0.2.2"
+description = "Datasette plugin providing data dashboards from metadata"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "datasette-dashboards-0.2.2.tar.gz", hash = "sha256:32634cafc13652375270d2bc1d731ecd159a1f1d6fed3d226a9bf72e88d1b8fd"},
+    {file = "datasette_dashboards-0.2.2-py3-none-any.whl", hash = "sha256:500fb8d2b8b6d237cf85a56df812115ea4f861efe55e0d0790e56e95c4df61dd"},
+]
+
+[package.dependencies]
+datasette = "*"
+datasette-render-markdown = "*"
+
+[package.extras]
+test = ["faker", "pytest", "pytest-asyncio", "sqlite-utils"]
+
+[[package]]
 name = "datasette-graphql"
 version = "2.1.2"
 description = "Datasette plugin providing an automatic GraphQL API for your SQLite databases"
@@ -518,6 +556,26 @@ datasette = ">=0.59"
 
 [package.extras]
 test = ["pytest"]
+
+[[package]]
+name = "datasette-render-markdown"
+version = "2.1.1"
+description = "Datasette plugin for rendering Markdown"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "datasette-render-markdown-2.1.1.tar.gz", hash = "sha256:5487d57080e0bb0db40a7048c2f41d86cedb05e4fb669fcb9ac6e20051361675"},
+    {file = "datasette_render_markdown-2.1.1-py3-none-any.whl", hash = "sha256:fbadcf30190fac66d6bfe239f12c25abe358b5b8a0f625b3673c23c3e822d4f4"},
+]
+
+[package.dependencies]
+bleach = "*"
+datasette = "*"
+markdown = "*"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio"]
 
 [[package]]
 name = "exceptiongroup"
@@ -716,6 +774,26 @@ files = [
 ]
 
 [[package]]
+name = "importlib-metadata"
+version = "6.0.0"
+description = "Read metadata from Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "importlib_metadata-6.0.0-py3-none-any.whl", hash = "sha256:7efb448ec9a5e313a57655d35aa54cd3e01b7e1fbcf72dce1bf06119420f5bad"},
+    {file = "importlib_metadata-6.0.0.tar.gz", hash = "sha256:e354bedeb60efa6affdcc8ae121b73544a7aa74156d047311948f6d711cd378d"},
+]
+
+[package.dependencies]
+zipp = ">=0.5"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+perf = ["ipython"]
+testing = ["flake8 (<5)", "flufl.flake8", "importlib-resources (>=1.3)", "packaging", "pyfakefs", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf (>=0.9.2)"]
+
+[[package]]
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
@@ -789,6 +867,24 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
+
+[[package]]
+name = "markdown"
+version = "3.4.1"
+description = "Python implementation of Markdown."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "Markdown-3.4.1-py3-none-any.whl", hash = "sha256:08fb8465cffd03d10b9dd34a5c3fea908e20391a2a90b88d66362cb05beed186"},
+    {file = "Markdown-3.4.1.tar.gz", hash = "sha256:3b809086bb6efad416156e00a0da66fe47618a5d6918dd688f53f40c8e4cfeff"},
+]
+
+[package.dependencies]
+importlib-metadata = {version = ">=4.4", markers = "python_version < \"3.10\""}
+
+[package.extras]
+testing = ["coverage", "pyyaml"]
 
 [[package]]
 name = "markupsafe"
@@ -1413,7 +1509,35 @@ h11 = ">=0.8"
 [package.extras]
 standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
+[[package]]
+name = "webencodings"
+version = "0.5.1"
+description = "Character encoding aliases for legacy web content"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
+    {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
+]
+
+[[package]]
+name = "zipp"
+version = "3.14.0"
+description = "Backport of pathlib-compatible object wrapper for zip files"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "zipp-3.14.0-py3-none-any.whl", hash = "sha256:188834565033387710d046e3fe96acfc9b5e86cbca7f39ff69cf21a4128198b7"},
+    {file = "zipp-3.14.0.tar.gz", hash = "sha256:9e5421e176ef5ab4c0ad896624e87a7b2f07aca746c9b2aa305952800cb8eecb"},
+]
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools", "more-itertools", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "c8e6933b23cf8c57abe24d79bb227d4a0f2525532a6153a3452208d00932dbc7"
+content-hash = "35e5996844a82fd882656affb2c73d6e54f878c7aba80ae368e3abb55ca63ea2"

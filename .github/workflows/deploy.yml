@@ -44,6 +44,13 @@ jobs:
         name: "Install dependencies 👨🏻‍💻"
         run: make setup
 
+      - id: cache-database
+        name: "Cache dinesafe.db 📦"
+        uses: actions/cache@v3.0.11
+        with:
+          path: dinesafe.db
+          key: dinesafe-db
+
       - id: build-database
         name: "Build the database 🗂️"
         run: make build
