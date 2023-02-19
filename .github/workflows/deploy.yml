@@ -66,4 +66,7 @@ jobs:
             --metadata metadata.json \
             --token $VERCEL_TOKEN \
             --project $VERCEL_PROJECT \
-            --scope $VERCEL_SCOPE
+            --scope $VERCEL_SCOPE \
+            --install datasette-block-robots \
+            --install datasette-dashboards \
+            --install datasette-gzip
