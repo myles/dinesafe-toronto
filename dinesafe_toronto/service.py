@@ -8,6 +8,20 @@ from sqlite_utils import Database
 from sqlite_utils.db import Table
 
 
+def open_database(db_path: str) -> Database:
+    """
+    Open the DineSafe Database.
+    """
+    db = Database(db_path)
+
+    if db.tables:
+        from .migrations import migrate
+
+        migrate(db)
+
+    return db
+
+
 def build_tables(db: Database):
     """
     Build the SQLite database structure.
