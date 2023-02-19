@@ -49,6 +49,7 @@ jobs:
         uses: actions/cache@v3.0.11
         with:
           path: dinesafe.db
+          key: dinesafe-db
 
       - id: build-database
         name: "Build the database 🗂️"
