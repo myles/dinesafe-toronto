@@ -38,16 +38,3 @@ def scrape_data(db_path: str):
         establishments_table=establishments_table,
         inspections_table=inspections_table,
     )
-
-
-@cli.command()
-@click.argument(
-    "db_path",
-    type=click.Path(file_okay=True, dir_okay=False, allow_dash=False),
-    required=True,
-)
-def stats(db_path: str):
-    """
-    Returns some statistics about the data.
-    """
-    db = Database(db_path)
