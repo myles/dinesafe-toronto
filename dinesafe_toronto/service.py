@@ -24,11 +24,14 @@ def build_tables(db: Database):
             pk="status",
         )
 
-    establishment_statuses_table.upsert_all([
-        {'status': 'Pass', 'order': 0},
-        {'status': 'Conditional Pass', 'order': 1},
-        {'status': 'Closed', 'order': 2},
-    ], pk="status")
+    establishment_statuses_table.upsert_all(
+        [
+            {"status": "Pass", "order": 0},
+            {"status": "Conditional Pass", "order": 1},
+            {"status": "Closed", "order": 2},
+        ],
+        pk="status",
+    )
 
     if establishments_table.exists() is False:
         establishments_table.create(
@@ -57,12 +60,15 @@ def build_tables(db: Database):
             pk="severity",
         )
 
-    inspection_severities_table.upsert_all([
-        {"severity": "M - Minor", "order": 0},
-        {"severity": "S - Significant", "order": 1},
-        {"severity": "C - Crucial", "order": 2},
-        {"severity": "NA - Not Applicable", "order": 9}
-    ], pk="severity")
+    inspection_severities_table.upsert_all(
+        [
+            {"severity": "M - Minor", "order": 0},
+            {"severity": "S - Significant", "order": 1},
+            {"severity": "C - Crucial", "order": 2},
+            {"severity": "NA - Not Applicable", "order": 9},
+        ],
+        pk="severity",
+    )
 
     if inspections_table.exists() is False:
         inspections_table.create(
