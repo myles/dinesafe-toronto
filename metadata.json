@@ -10,7 +10,61 @@
       "source": "Toronto Public Health",
       "source_url": "https://open.toronto.ca/dataset/dinesafe/",
       "license": "Open Government License - Toronto",
-      "license_url": "https://open.toronto.ca/dataset/dinesafe/"
+      "license_url": "https://open.toronto.ca/dataset/dinesafe/",
+      "tables": {
+        "establishments": {
+          "columns": {
+            "type": "Establishment type (i.e. restaurant, mobile cart)",
+            "status": "Pass, Conditional Pass, Closed",
+            "minimum_inspections_per_year": "Every eating and drinking establishment in the City of Toronto receives a minimum of 1, 2, or 3 inspections each year depending on the specific type of establishment, the food preparation processes, volume and type of food served and other related criteria. Low risk premises that offer for sale only pre-packaged non-hazardous food shall be inspected once every two years. The inspection frequency for these low risk premises is shown as \"O\" (Other) on the report and in the data set."
+          }
+        },
+        "inspections": {
+          "columns": {
+            "severity": "Level of the infraction, i.e. S - Significant, M - Minor, C - Crucial",
+            "action": "Enforcement activity based on the infractions noted during a food safety inspection",
+            "outcome": "The registered court decision resulting from the issuance of a ticket or summons for outstanding infractions to the Health Protection and Promotion Act"
+          }
+        },
+        "establishment_statuses": {
+          "hidden": true
+        }
+      }
+    }
+  },
+  "plugins": {
+    "datasette-dashboards": {
+      "dashboard": {
+        "title": "DineSafe Dashboard",
+        "description": "Showing some basic metrics about Toronto's DineSafe data.",
+        "layout": [["establishments_count", "establishments_status"]],
+        "charts": {
+          "establishments_count": {
+            "title": "Number of establishments",
+            "db": "dinesafe",
+            "query": "select count(1) as count from establishments",
+            "library": "metric",
+            "display": { "field": "count" }
+          },
+          "establishments_status": {
+            "title": "Number of establishments by status",
+            "db": "dinesafe",
+            "query": "select * from establishments_by_status",
+            "library": "vega",
+            "display": {
+              "mark": {
+                "type": "arc",
+                "innerRadius": 50,
+                "tooltip": true
+              },
+              "encoding": {
+                "theta": { "field": "count", "type": "quantitative" },
+                "color": { "field": "status", "type": "nominal" }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

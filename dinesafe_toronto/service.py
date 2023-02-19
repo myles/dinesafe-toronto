@@ -15,6 +15,21 @@ def build_tables(db: Database):
     establishments_table: Table = db.table("establishments")  # type: ignore
     inspections_table: Table = db.table("inspections")  # type: ignore
 
+    establishment_statuses_table: Table = db.table("establishment_statuses")  # type: ignore
+    inspection_severities_table: Table = db.table("inspection_severities")  # type: ignore
+
+    if establishment_statuses_table.exists() is False:
+        establishment_statuses_table.create(
+            columns={"status": str, "order": int},
+            pk="status",
+        )
+
+    establishment_statuses_table.upsert_all([
+        {'status': 'Pass', 'order': 0},
+        {'status': 'Conditional Pass', 'order': 1},
+        {'status': 'Closed', 'order': 2},
+    ], pk="status")
+
     if establishments_table.exists() is False:
         establishments_table.create(
             columns={
@@ -30,10 +45,24 @@ def build_tables(db: Database):
                 "updated_at": datetime.datetime,
             },
             pk="id",
+            foreign_keys=(("status", "establishment_statuses", "status"),),
         )
         establishments_table.enable_fts(
             ["name", "address"], create_triggers=True
         )
+
+    if inspection_severities_table.exists() is False:
+        inspection_severities_table.create(
+            columns={"severity": str, "order": int},
+            pk="severity",
+        )
+
+    inspection_severities_table.upsert_all([
+        {"severity": "M - Minor", "order": 0},
+        {"severity": "S - Significant", "order": 1},
+        {"severity": "C - Crucial", "order": 2},
+        {"severity": "NA - Not Applicable", "order": 9}
+    ], pk="severity")
 
     if inspections_table.exists() is False:
         inspections_table.create(
@@ -50,8 +79,29 @@ def build_tables(db: Database):
                 "updated_at": datetime.datetime,
             },
             pk="id",
-            foreign_keys=(("establishment_id", "establishments", "id"),),
+            foreign_keys=(
+                ("establishment_id", "establishments", "id"),
+                ("severity", "inspection_severities", "severity"),
+            ),
         )
+
+    # Views
+    db.create_view(
+        "establishments_by_status",
+        """
+        select
+          count(establishments.id) as count,
+          establishment_statuses.status
+        from
+          establishment_statuses
+          left join establishments on establishments.status = establishment_statuses.status
+        group by
+          establishment_statuses.status
+        order by
+          establishment_statuses.status
+        """,
+        replace=True,
+    )
 
 
 def get_dinesafe_data_url() -> str:
@@ -147,7 +197,7 @@ def transform_inspection(inspection: Dict[str, Any], existing_row: bool):
     )
     inspection["date"] = inspection.pop("Inspection Date", None) or None
     inspection["severity"] = inspection.pop("Severity", None) or None
-    inspection["action"] = inspection.pop("Action", None) or ""
+    inspection["action"] = inspection.pop("Action", None) or None
     inspection["outcome"] = inspection.pop("Outcome", None) or ""
     inspection["amount_fined"] = inspection.pop("Amount Fined", None) or None
 
