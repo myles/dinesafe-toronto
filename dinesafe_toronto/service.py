@@ -123,6 +123,23 @@ def build_tables(db: Database):
         replace=True,
     )
 
+    db.create_view(
+        "inspections_by_severity",
+        """
+        select
+          count(inspections.id) as count,
+          inspection_severities.severity
+        from
+          inspection_severities
+          left join inspections on inspections.severity = inspection_severities.severity
+        group by
+          inspection_severities.severity
+        order by
+          inspection_severities.severity
+        """,
+        replace=True,
+    )
+
 
 def get_dinesafe_data_url() -> str:
     """

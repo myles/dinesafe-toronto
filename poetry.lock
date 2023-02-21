@@ -1287,6 +1287,27 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "responses"
+version = "0.22.0"
+description = "A utility library for mocking out the `requests` Python library."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "responses-0.22.0-py3-none-any.whl", hash = "sha256:dcf294d204d14c436fddcc74caefdbc5764795a40ff4e6a7740ed8ddbf3294be"},
+    {file = "responses-0.22.0.tar.gz", hash = "sha256:396acb2a13d25297789a5866b4881cf4e46ffd49cc26c43ab1117f40b973102e"},
+]
+
+[package.dependencies]
+requests = ">=2.22.0,<3.0"
+toml = "*"
+types-toml = "*"
+urllib3 = ">=1.25.10"
+
+[package.extras]
+tests = ["coverage (>=6.0.0)", "flake8", "mypy", "pytest (>=7.0.0)", "pytest-asyncio", "pytest-cov", "pytest-httpserver", "types-requests"]
+
+[[package]]
 name = "rfc3986"
 version = "1.5.0"
 description = "Validating URI References per RFC 3986"
@@ -1450,6 +1471,18 @@ files = [
 types-urllib3 = "<1.27"
 
 [[package]]
+name = "types-toml"
+version = "0.10.8.5"
+description = "Typing stubs for toml"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-toml-0.10.8.5.tar.gz", hash = "sha256:bf80fce7d2d74be91148f47b88d9ae5adeb1024abef22aa2fdbabc036d6b8b3c"},
+    {file = "types_toml-0.10.8.5-py3-none-any.whl", hash = "sha256:2432017febe43174af0f3c65f03116e3d3cf43e7e1406b8200e106da8cf98992"},
+]
+
+[[package]]
 name = "types-urllib3"
 version = "1.26.25.6"
 description = "Typing stubs for urllib3"
@@ -1540,4 +1573,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "35e5996844a82fd882656affb2c73d6e54f878c7aba80ae368e3abb55ca63ea2"
+content-hash = "5c0c20d513cc32bb8783c6cfce2a8070e6291fc20c3f4f8bacda9eed7bb0ce91"
