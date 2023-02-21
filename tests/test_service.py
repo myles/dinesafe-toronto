@@ -1,8 +1,57 @@
 import pytest
+import responses
+from responses import matchers
 
 from dinesafe_toronto import service
 
 from . import fixtures
+
+
+def test_build_tables(mock_db):
+    service.build_tables(mock_db)
+
+    assert mock_db["establishments"].exists() is True
+    assert mock_db["inspections"].exists() is True
+
+    assert mock_db["establishment_statuses"].exists() is True
+    assert mock_db["inspection_severities"].exists() is True
+
+    assert mock_db["establishments_by_status"].exists() is True
+    assert mock_db["inspections_by_severity"].exists() is True
+
+
+@responses.activate
+def test_get_dinesafe_data_url():
+    expected_result = fixtures.OPEN_TORONTO_DINESAFE_JSON_RESOURCE["url"]
+
+    responses.add(
+        responses.Response(
+            method="GET",
+            url="https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show",
+            match=[matchers.query_param_matcher({"id": "dinesafe"})],
+            json=fixtures.OPEN_TORONTO_PACKAGE_RESPONSE,
+        )
+    )
+
+    result = service.get_dinesafe_data_url()
+    assert result == expected_result
+
+
+@responses.activate
+def test_get_dinesafe_data():
+    url = fixtures.OPEN_TORONTO_DINESAFE_JSON_RESOURCE["url"]
+    expected_payload = [{"t-rex": "🦖"}]
+
+    responses.add(
+        responses.Response(
+            method="GET",
+            url=url,
+            json=expected_payload,
+        )
+    )
+
+    result = service.get_dinesafe_data(url)
+    assert expected_payload == result
 
 
 @pytest.mark.parametrize("existing_row", (True, False))
