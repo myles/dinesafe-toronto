@@ -174,6 +174,26 @@ DINESAFE_INSPECTION_ONE = {
     "Longitude": -79.0000,
 }
 
+DINESAFE_INSPECTION_TWO = {
+    "_id": 1,
+    "Rec #": 1,
+    "Establishment ID": 123,
+    "Inspection ID": 567,
+    "Establishment Name": "A RANDOM RESTAURANT",
+    "Establishment Type": "Food Depot",
+    "Establishment Address": "789 STREET AVE, UNIT 0",
+    "Establishment Status": "Pass",
+    "Min. Inspections Per Year": "2",
+    "Infraction Details": "FAIL TO ENSURE FOOD HANDLER IN FOOD PREMISE WEARS CLEAN OUTER GARMENTS - SEC. 33(1)(C)",
+    "Inspection Date": "2023-01-05",
+    "Severity": "M - Minor",
+    "Action": "Notice to Comply",
+    "Outcome": "Pending",
+    "Amount Fined": 123.90,
+    "Latitude": 43.0000,
+    "Longitude": -79.0000,
+}
+
 TRANSFORMED_DINESAFE_ESTABLISHMENT = {
     "id": DINESAFE_INSPECTION_ONE["Establishment ID"],
     "name": DINESAFE_INSPECTION_ONE["Establishment Name"],
@@ -196,4 +216,24 @@ TRANSFORMED_DINESAFE_INSPECTION = {
     "action": DINESAFE_INSPECTION_ONE["Action"],
     "outcome": DINESAFE_INSPECTION_ONE["Outcome"],
     "amount_fined": DINESAFE_INSPECTION_ONE["Amount Fined"],
+}
+
+DINESAFE_INSPECTION_THREE = {
+    "_id": 2,
+    "Rec #": 2,
+    "Establishment ID": 234,
+    "Inspection ID": None,
+    "Establishment Name": "A RANDOM RESTAURANT",
+    "Establishment Type": "Food Depot",
+    "Establishment Address": "789 STREET AVE, UNIT 0",
+    "Establishment Status": "Pass",
+    "Min. Inspections Per Year": "2",
+    "Infraction Details": None,
+    "Inspection Date": None,
+    "Severity": None,
+    "Action": None,
+    "Outcome": None,
+    "Amount Fined": None,
+    "Latitude": 43.0000,
+    "Longitude": -79.0000,
 }
