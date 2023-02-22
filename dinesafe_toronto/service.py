@@ -231,7 +231,7 @@ def transform_inspection(inspection: Dict[str, Any], existing_row: bool):
     inspection["date"] = inspection.pop("Inspection Date", None) or None
     inspection["severity"] = inspection.pop("Severity", None) or None
     inspection["action"] = inspection.pop("Action", None) or None
-    inspection["outcome"] = inspection.pop("Outcome", None) or ""
+    inspection["outcome"] = inspection.pop("Outcome", None) or None
     inspection["amount_fined"] = inspection.pop("Amount Fined", None) or None
 
     to_remove = [
