@@ -62,7 +62,6 @@ def build_tables(db: Database):
                 "updated_at": datetime.datetime,
             },
             pk="id",
-            foreign_keys=(("status", "establishment_statuses", "status"),),
         )
         establishments_table.enable_fts(
             ["name", "address"], create_triggers=True
@@ -101,7 +100,6 @@ def build_tables(db: Database):
             pk="id",
             foreign_keys=(
                 ("establishment_id", "establishments", "id"),
-                ("severity", "inspection_severities", "severity"),
             ),
         )
 
@@ -267,6 +265,31 @@ def get_existing_ids(table: Table) -> List[int]:
     return [int(row["id"]) for row in rows]
 
 
+def get_establishments(dinesafe_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    '''
+    Extract the DineSafe establishments from the data.
+    '''
+    dinesafe_data = deepcopy(dinesafe_data)
+
+    establishments = []
+    found_establishment_ids = set()
+
+    for d in dinesafe_data:
+        if d["Establishment ID"] not in found_establishment_ids:
+            found_establishment_ids.add(d["Establishment ID"])
+            establishments.append(d)
+
+    return establishments
+
+
+def get_inspections(dinesafe_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    '''
+    Extract the DineSafe inspections from the data.
+    '''
+    dinesafe_data = deepcopy(dinesafe_data)
+    return list(filter(lambda d: d["Inspection ID"] is not None, dinesafe_data))
+
+
 def save_dinesafe(
     dinesafe_data: List[Dict[str, Any]],
     *,
@@ -276,8 +299,8 @@ def save_dinesafe(
     """
     Save dinesafe report.
     """
-    establishments = deepcopy(dinesafe_data)
-    inspections = deepcopy(dinesafe_data)
+    establishments = get_establishments(dinesafe_data)
+    inspections = get_inspections(dinesafe_data)
 
     existing_establishment_ids = get_existing_ids(table=establishments_table)
     existing_inspection_ids = get_existing_ids(table=inspections_table)
