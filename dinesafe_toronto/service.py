@@ -29,8 +29,12 @@ def build_tables(db: Database):
     establishments_table: Table = db.table("establishments")  # type: ignore
     inspections_table: Table = db.table("inspections")  # type: ignore
 
-    establishment_statuses_table: Table = db.table("establishment_statuses")  # type: ignore
-    inspection_severities_table: Table = db.table("inspection_severities")  # type: ignore
+    establishment_statuses_table: Table = db.table(  # type: ignore
+        "establishment_statuses"
+    )
+    inspection_severities_table: Table = db.table(  # type: ignore
+        "inspection_severities"
+    )
 
     if establishment_statuses_table.exists() is False:
         establishment_statuses_table.create(
@@ -110,7 +114,8 @@ def build_tables(db: Database):
           establishment_statuses.status
         from
           establishment_statuses
-          left join establishments on establishments.status = establishment_statuses.status
+          left join establishments on
+            establishments.status = establishment_statuses.status
         group by
           establishment_statuses.status
         order by
@@ -127,7 +132,8 @@ def build_tables(db: Database):
           inspection_severities.severity
         from
           inspection_severities
-          left join inspections on inspections.severity = inspection_severities.severity
+          left join inspections on
+            inspections.severity = inspection_severities.severity
         group by
           inspection_severities.severity
         order by
@@ -142,7 +148,10 @@ def get_dinesafe_data_url() -> str:
     Connect to the OpenData Toronto package database and get the latest URL
     for the DineSafe JSON file.
     """
-    url = "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show"
+    url = (
+        "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action"
+        "/package_show"
+    )
     params = {"id": "dinesafe"}
 
     response = requests.get(url=url, params=params)

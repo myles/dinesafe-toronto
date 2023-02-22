@@ -1,5 +1,6 @@
 import click
 from sqlite_utils import Database
+from sqlite_utils.db import Table
 
 from . import service
 

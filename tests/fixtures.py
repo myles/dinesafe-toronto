@@ -19,7 +19,10 @@ OPEN_TORONTO_DINESAFE_JSON_RESOURCE = {
     "resource_type": None,
     "size": 24128293,
     "state": "active",
-    "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/i-am-a-package-id/resource/i-am-a-resource-id/download/dinesafe.json",
+    "url": (
+        "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset"
+        "/i-am-a-package-id/resource/i-am-a-resource-id/download/dinesafe.json"
+    ),
     "url_type": "upload",
 }
 
@@ -65,7 +68,10 @@ OPEN_TORONTO_PACKAGE_RESPONSE = {
                 "resource_type": None,
                 "size": None,
                 "state": "active",
-                "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/datastore/dump/i-am-a-datastore-resource-id",
+                "url": (
+                    "https://ckan0.cf.opendata.inter.prod-toronto.ca/datastore"
+                    "/dump/i-am-a-datastore-resource-id"
+                ),
                 "url_type": "datastore",
             },
             {
@@ -89,7 +95,12 @@ OPEN_TORONTO_PACKAGE_RESPONSE = {
                 "resource_type": None,
                 "size": 8783053,
                 "state": "active",
-                "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/i-am-a-package-id/resource/815aedb5-f9d7-4dcd-a33a-4aa7ac5aac50/download/dinesafe.csv",
+                "url": (
+                    "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset"
+                    "/i-am-a-package-id/resource"
+                    "/815aedb5-f9d7-4dcd-a33a-4aa7ac5aac50/download"
+                    "/dinesafe.csv"
+                ),
                 "url_type": "upload",
             },
             {
@@ -113,7 +124,12 @@ OPEN_TORONTO_PACKAGE_RESPONSE = {
                 "resource_type": None,
                 "size": 33229519,
                 "state": "active",
-                "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/i-am-a-package-id/resource/069d7753-73a8-4afd-a302-6cca0e8f1027/download/dinesafe.xml",
+                "url": (
+                    "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset"
+                    "/i-am-a-package-id"
+                    "/resource/069d7753-73a8-4afd-a302-6cca0e8f1027/download"
+                    "/dinesafe.xml"
+                ),
                 "url_type": "upload",
             },
             OPEN_TORONTO_DINESAFE_JSON_RESOURCE,
@@ -164,7 +180,10 @@ DINESAFE_INSPECTION_ONE = {
     "Establishment Address": "789 STREET AVE, UNIT 0",
     "Establishment Status": "Pass",
     "Min. Inspections Per Year": "2",
-    "Infraction Details": "FAIL TO ENSURE FOOD HANDLER IN FOOD PREMISE WEARS CLEAN OUTER GARMENTS - SEC. 33(1)(C)",
+    "Infraction Details": (
+        "FAIL TO ENSURE FOOD HANDLER IN FOOD PREMISE WEARS CLEAN OUTER"
+        " GARMENTS - SEC. 33(1)(C)"
+    ),
     "Inspection Date": "2022-04-05",
     "Severity": "M - Minor",
     "Action": "Notice to Comply",
@@ -184,7 +203,10 @@ DINESAFE_INSPECTION_TWO = {
     "Establishment Address": "789 STREET AVE, UNIT 0",
     "Establishment Status": "Pass",
     "Min. Inspections Per Year": "2",
-    "Infraction Details": "FAIL TO ENSURE FOOD HANDLER IN FOOD PREMISE WEARS CLEAN OUTER GARMENTS - SEC. 33(1)(C)",
+    "Infraction Details": (
+        "FAIL TO ENSURE FOOD HANDLER IN FOOD PREMISE WEARS CLEAN OUTER"
+        " GARMENTS - SEC. 33(1)(C)"
+    ),
     "Inspection Date": "2023-01-05",
     "Severity": "M - Minor",
     "Action": "Notice to Comply",
