@@ -29,6 +29,9 @@
         "establishment_statuses": {
           "hidden": true
         },
+        "inspection_outcomes": {
+          "hidden": true
+        },
         "inspection_severities": {
           "hidden": true
         }
