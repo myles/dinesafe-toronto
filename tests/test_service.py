@@ -118,8 +118,14 @@ def test_get_establishments():
 
     assert len(establishments) == 2
     establishment_one, establishment_two = establishments
-    assert establishment_one["Establishment ID"] == fixtures.DINESAFE_INSPECTION_ONE["Establishment ID"]
-    assert establishment_two["Establishment ID"] == fixtures.DINESAFE_INSPECTION_THREE["Establishment ID"]
+    assert (
+        establishment_one["Establishment ID"]
+        == fixtures.DINESAFE_INSPECTION_ONE["Establishment ID"]
+    )
+    assert (
+        establishment_two["Establishment ID"]
+        == fixtures.DINESAFE_INSPECTION_THREE["Establishment ID"]
+    )
 
 
 def test_get_inspections():
@@ -132,5 +138,11 @@ def test_get_inspections():
     inspections = service.get_inspections(dinesafe_data)
     assert len(inspections) == 2
     inspection_one, inspection_two = inspections
-    assert inspection_one["Inspection ID"] == fixtures.DINESAFE_INSPECTION_ONE["Inspection ID"]
-    assert inspection_two["Inspection ID"] == fixtures.DINESAFE_INSPECTION_TWO["Inspection ID"]
+    assert (
+        inspection_one["Inspection ID"]
+        == fixtures.DINESAFE_INSPECTION_ONE["Inspection ID"]
+    )
+    assert (
+        inspection_two["Inspection ID"]
+        == fixtures.DINESAFE_INSPECTION_TWO["Inspection ID"]
+    )
