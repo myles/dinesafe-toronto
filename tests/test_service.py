@@ -17,6 +17,7 @@ def test_build_tables(mock_db):
     assert mock_db["inspection_severities"].exists() is True
 
     assert mock_db["establishments_by_status"].exists() is True
+    assert mock_db["inspections_by_outcome"].exists() is True
     assert mock_db["inspections_by_severity"].exists() is True
 
 
