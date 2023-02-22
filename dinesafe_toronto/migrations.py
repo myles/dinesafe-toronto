@@ -2,7 +2,6 @@ import datetime
 from typing import Callable, List
 
 from sqlite_utils import Database
-from sqlite_utils.db import Table
 
 MIGRATIONS: List[Callable[[Database], None]] = []
 

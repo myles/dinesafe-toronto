@@ -13,6 +13,7 @@ test:
 lint:
 	poetry run black --check .
 	poetry run isort --check .
+	poetry run ruff check .
 
 .PHONY: mypy
 mypy:
