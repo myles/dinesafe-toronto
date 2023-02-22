@@ -35,6 +35,9 @@ def build_tables(db: Database):
     inspection_severities_table: Table = db.table(  # type: ignore
         "inspection_severities"
     )
+    inspection_outcomes_table: Table = db.table(  # type: ignore
+        "inspection_outcomes"
+    )
 
     if establishment_statuses_table.exists() is False:
         establishment_statuses_table.create(
@@ -85,6 +88,21 @@ def build_tables(db: Database):
             {"severity": "NA - Not Applicable", "order": 9},
         ],
         pk="severity",
+    )
+
+    if inspection_outcomes_table.exists() is False:
+        inspection_outcomes_table.create(
+            columns={"outcome": str, "order": int},
+            pk="outcome",
+        )
+
+    inspection_outcomes_table.upsert_all(
+        [
+            {"outcome": "Pending", "order": 0},
+            {"outcome": "Conviction - Fined", "order": 1},
+            {"outcome": "Cancelled", "order": 2},
+        ],
+        pk="outcome",
     )
 
     if inspections_table.exists() is False:
@@ -138,6 +156,24 @@ def build_tables(db: Database):
           inspection_severities.severity
         order by
           inspection_severities.severity
+        """,
+        replace=True,
+    )
+
+    db.create_view(
+        "inspections_by_outcome",
+        """
+        select
+          count(inspections.id) as count,
+          inspection_outcomes.outcome
+        from
+          inspection_outcomes
+          left join inspections on
+            inspections.outcome = inspection_outcomes.outcome
+        group by
+          inspection_outcomes.outcome
+        order by
+          inspection_outcomes.outcome
         """,
         replace=True,
     )
