@@ -179,7 +179,7 @@ def transform_establishment(establishment: Dict[str, Any], existing_row: bool):
 
     establishment["id"] = establishment.pop("Establishment ID")
     establishment["name"] = establishment.pop("Establishment Name", None) or ""
-    establishment["type"] = establishment.pop("Establishment Type", None) or ""
+    establishment["type"] = establishment.pop("Establishment Type", None) or None
     establishment["address"] = (
         establishment.pop("Establishment Address", None) or ""
     )
