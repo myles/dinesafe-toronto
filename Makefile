@@ -27,6 +27,7 @@ bandit:
 clean:
 	rm -fr ./.mypy_cache
 	rm -fr ./.pytest_cache
+	rm -fr ./.ruff_cache
 	rm -fr ./dist
 	rm .coverage
 	rm coverage.xml
