@@ -71,6 +71,11 @@
           }
         }
       }
+    },
+    "datasette-sentry": {
+      "dsn": {
+        "$env": "SENTRY_DSN"
+      }
     }
   }
 }

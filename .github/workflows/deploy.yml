@@ -67,6 +67,7 @@ jobs:
             --token $VERCEL_TOKEN \
             --project $VERCEL_PROJECT \
             --scope $VERCEL_SCOPE \
+            --install datasette-sentry \
             --install datasette-block-robots \
             --install datasette-dashboards \
             --install datasette-gzip
