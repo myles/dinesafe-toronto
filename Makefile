@@ -29,8 +29,8 @@ clean:
 	rm -fr ./.pytest_cache
 	rm -fr ./.ruff_cache
 	rm -fr ./dist
-	rm .coverage
-	rm coverage.xml
+	rm -f .coverage
+	rm -f coverage.xml
 	find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete
 
 .PHONY: build
