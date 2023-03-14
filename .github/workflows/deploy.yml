@@ -12,6 +12,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - id: sentry-check-in
+        name: "⏲️ Check-in with Sentry"
+        env:
+          SENTRY_MONITOR_ID: ${{ secrets.SENTRY_MONITOR_ID }}
+          SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_NAME }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        run: |
+          curl -X POST \
+            'https://sentry.io/api/0/organizations/${{ SENTRY_ORG_SLUG }}/monitors/${{ SENTRY_MONITOR_ID }}/checkins/' \
+            --header 'Authorization: DSN ${{ SENTRY_DSN }}' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{"status": "in_progress"}'
+
       - id: checkout
         name: "Checkout 🛎"
         uses: actions/checkout@v2
@@ -58,9 +71,9 @@ jobs:
       - id: deploy
         name: "Deploy datasets to Vercel 🚀"
         env:
+          VERCEL_PROJECT: ${{ secrets.VERCEL_PROJECT }}
+          VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_PROJECT: dinesafe-toronto
-          VERCEL_SCOPE: team_zMUI4sQyIJCEJwCyZPlYaQ1b
         run: |-
           poetry run datasette publish vercel dinesafe.db \
             --metadata metadata.json \
@@ -71,3 +84,16 @@ jobs:
             --install datasette-block-robots \
             --install datasette-dashboards \
             --install datasette-gzip
+
+      - id: sentry-check-out
+        name: "⏲️ Checkout with Sentry"
+        env:
+          SENTRY_MONITOR_ID: ${{ secrets.SENTRY_MONITOR_ID }}
+          SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_NAME }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        run: |
+          curl -X POST \
+            'https://sentry.io/api/0/organizations/${{ SENTRY_ORG_SLUG }}/monitors/${{ SENTRY_MONITOR_ID }}/checkins/' \
+            --header 'Authorization: DSN ${{ SENTRY_DSN }}' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{"status": "ok", "duration": 3000}'
