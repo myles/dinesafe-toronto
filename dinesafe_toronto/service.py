@@ -190,7 +190,7 @@ def get_dinesafe_data_url() -> str:
     )
     params = {"id": "dinesafe"}
 
-    response = requests.get(url=url, params=params)
+    response = requests.get(url=url, params=params, timeout=(5, 10))
     response.raise_for_status()
 
     data = response.json()
@@ -207,7 +207,7 @@ def get_dinesafe_data(url: str) -> List[Dict[str, Any]]:
     """
     Get the Dinesafe JSON file.
     """
-    with requests.get(url=url, stream=True) as response:
+    with requests.get(url=url, stream=True, timeout=(5, 10)) as response:
         content = response.content
     return json.loads(content)
 
