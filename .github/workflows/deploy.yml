@@ -20,7 +20,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |-
           curl -X POST \
-            'https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/' \
+            "https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/" \
             --header "Authorization: DSN $SENTRY_DSN" \
             --header "Content-Type: application/json" \
             --data-raw '{"status": "in_progress"}'
@@ -104,7 +104,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |-
           curl -X POST \
-            'https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/latest/' \
+            "https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/latest/" \
             --header "Authorization: DSN $SENTRY_DSN" \
             --header "Content-Type: application/json" \
             --data-raw '{"status": "ok", "duration": 3000}'
