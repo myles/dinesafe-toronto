@@ -85,6 +85,16 @@ jobs:
             --install datasette-dashboards \
             --install datasette-gzip
 
+      - id: sentry-release
+        name: "✍️ Create a release in Sentry"
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG_NAME }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
+
       - id: sentry-check-out
         name: "⏲️ Checkout with Sentry"
         env:
