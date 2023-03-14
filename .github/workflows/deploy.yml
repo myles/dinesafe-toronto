@@ -16,11 +16,11 @@ jobs:
         name: "⏲️ Check-in with Sentry"
         env:
           SENTRY_MONITOR_ID: ${{ secrets.SENTRY_MONITOR_ID }}
-          SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_NAME }}
+          SENTRY_ORG_NAME: ${{ secrets.SENTRY_ORG_NAME }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           curl -X POST \
-            'https://sentry.io/api/0/organizations/${{ SENTRY_ORG_SLUG }}/monitors/${{ SENTRY_MONITOR_ID }}/checkins/' \
+            'https://sentry.io/api/0/organizations/${{ SENTRY_ORG_NAME }}/monitors/${{ SENTRY_MONITOR_ID }}/checkins/' \
             --header 'Authorization: DSN ${{ SENTRY_DSN }}' \
             --header 'Content-Type: application/json' \
             --data-raw '{"status": "in_progress"}'
@@ -89,11 +89,11 @@ jobs:
         name: "⏲️ Checkout with Sentry"
         env:
           SENTRY_MONITOR_ID: ${{ secrets.SENTRY_MONITOR_ID }}
-          SENTRY_ORG_SLUG: ${{ secrets.SENTRY_ORG_NAME }}
+          SENTRY_ORG_NAME: ${{ secrets.SENTRY_ORG_NAME }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           curl -X POST \
-            'https://sentry.io/api/0/organizations/${{ SENTRY_ORG_SLUG }}/monitors/${{ SENTRY_MONITOR_ID }}/checkins/' \
+            'https://sentry.io/api/0/organizations/${{ SENTRY_ORG_NAME }}/monitors/${{ SENTRY_MONITOR_ID }}/checkins/' \
             --header 'Authorization: DSN ${{ SENTRY_DSN }}' \
             --header 'Content-Type: application/json' \
             --data-raw '{"status": "ok", "duration": 3000}'
