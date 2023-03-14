@@ -12,6 +12,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - id: start
+        name: "Get the start time in epoch 🎬"
+        run: echo "::set-output name=timestamp::$(date +'%s')"
+
       - id: sentry-check-in
         name: "⏲️ Check-in with Sentry"
         env:
@@ -107,4 +111,4 @@ jobs:
             "https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/latest/" \
             --header "Authorization: DSN $SENTRY_DSN" \
             --header "Content-Type: application/json" \
-            --data-raw '{"status": "ok", "duration": 3000}'
+            --data-raw "{\"status\": \"ok\", \"duration\": $(expr $(date +'%s') - ${{ steps.start.outputs.timestamp }})}"
