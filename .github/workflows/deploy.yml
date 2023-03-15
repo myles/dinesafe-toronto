@@ -6,7 +6,7 @@ on:
     branches:
       - "main"
   schedule:
-    - cron: "0 13 * * *"  # Every day at 1pm UTC
+    - cron: "0 13 * * *" # Every day at 1pm UTC
 
 jobs:
   deploy:
@@ -111,4 +111,4 @@ jobs:
             "https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/latest/" \
             --header "Authorization: DSN $SENTRY_DSN" \
             --header "Content-Type: application/json" \
-            --data-raw "{\"status\": \"ok\", \"duration\": $(expr $(date +'%s') - ${{ steps.start.outputs.timestamp }})}"
+            --data-raw "{\"status\": \"ok\", \"duration\": $(expr ${{ steps.start.outputs.timestamp }} - $(date +'%s'))}"
