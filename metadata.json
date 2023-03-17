@@ -1,7 +1,7 @@
 {
   "title": "DineSafe Toronto — slothful-myles",
-  "about": "myles/dinesafe-toronto",
-  "about_url": "https://github.com/myles/dinesafe-toronto",
+  "about": "Exploring Toronto's Restaurant Inspection Data with DineSafe",
+  "about_url": "https://mylesbraithwaite.com/exploring-torontos-restaurant-inspection-data-with-dinesafe",
   "description": "Datasette of the City of Toronto's DineSafe data.",
   "databases": {
     "dinesafe": {
