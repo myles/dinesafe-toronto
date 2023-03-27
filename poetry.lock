@@ -489,14 +489,14 @@ test = ["faker", "pytest", "pytest-asyncio", "sqlite-utils"]
 
 [[package]]
 name = "datasette-graphql"
-version = "2.1.2"
+version = "2.2"
 description = "Datasette plugin providing an automatic GraphQL API for your SQLite databases"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "datasette-graphql-2.1.2.tar.gz", hash = "sha256:1b171a7c72c316278c974ea3a1c7836cb559421599f54304ca27ef8349f9b963"},
-    {file = "datasette_graphql-2.1.2-py3-none-any.whl", hash = "sha256:59e82e02acc1b0464578ceac1767a51e83d528a747ea02c625ded60f47f5d3a1"},
+    {file = "datasette-graphql-2.2.tar.gz", hash = "sha256:3f7b1536975b8a2f995d7a68faea4282bd5ea936b83fbb99fd360f1567c70938"},
+    {file = "datasette_graphql-2.2-py3-none-any.whl", hash = "sha256:cd9f61afdcaab1ce4ff6775296e6ece99305bf05cbfae4c1c938a6c9e60cd485"},
 ]
 
 [package.dependencies]
@@ -1708,4 +1708,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "96005eeb25fc2b1d21d4b2c941c9ef505281187d1551236d28197f5d82c50815"
+content-hash = "12c955d74d88538a43bebb30d139bae928ec2d790c0e941336a60441b14a0c2c"
