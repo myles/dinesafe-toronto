@@ -470,18 +470,19 @@ test = ["httpx", "pytest", "pytest-asyncio"]
 
 [[package]]
 name = "datasette-dashboards"
-version = "0.3.0"
+version = "0.4.0"
 description = "Datasette plugin providing data dashboards from metadata"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "datasette-dashboards-0.3.0.tar.gz", hash = "sha256:7268bc37b8e5aca02a4d340c9a8edba9b67c8fbbd7f62503554a3cc3839d924c"},
-    {file = "datasette_dashboards-0.3.0-py3-none-any.whl", hash = "sha256:23baea1ff8b2b718a6cad90dce4a44f5b7cfeaa4fc28d112fabd4efc924c7584"},
+    {file = "datasette-dashboards-0.4.0.tar.gz", hash = "sha256:a517aae2ce4ce9d945dc21635cc875883656c62c95c6ce0693b338623fa19983"},
+    {file = "datasette_dashboards-0.4.0-py3-none-any.whl", hash = "sha256:9c91ae409f219237731dadf55b6578f8ecea1ffc676847627629dfaad278a993"},
 ]
 
 [package.dependencies]
 datasette = "*"
+datasette-leaflet = "*"
 datasette-render-markdown = "*"
 
 [package.extras]
@@ -522,6 +523,24 @@ files = [
 
 [package.dependencies]
 asgi-gzip = "*"
+datasette = "*"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio"]
+
+[[package]]
+name = "datasette-leaflet"
+version = "0.2.2"
+description = "A plugin that bundles Leaflet.js for Datasette"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "datasette-leaflet-0.2.2.tar.gz", hash = "sha256:8fd4e634304be392ae6f7de770d4f22b95a37caecd676a35faeb6200da9423bc"},
+    {file = "datasette_leaflet-0.2.2-py3-none-any.whl", hash = "sha256:fd88c25666e7680b25b4c6e5546bd02c9f5836bbc0fee61042dbb6b93d4139f0"},
+]
+
+[package.dependencies]
 datasette = "*"
 
 [package.extras]
@@ -1681,4 +1700,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "e22fcc54a7eb7286e686cd1e621659e769aa5bbc1bc124b1deb81e1f36a41e91"
+content-hash = "de3e6e7b1db4c320e02173aafdc6cebb41c69137b5dfd95b33e9930851a1cc60"
