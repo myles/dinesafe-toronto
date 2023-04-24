@@ -470,22 +470,20 @@ test = ["httpx", "pytest", "pytest-asyncio"]
 
 [[package]]
 name = "datasette-dashboards"
-version = "0.3.0"
+version = "0.5.0"
 description = "Datasette plugin providing data dashboards from metadata"
 category = "main"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8.1,<4.0.0"
 files = [
-    {file = "datasette-dashboards-0.3.0.tar.gz", hash = "sha256:7268bc37b8e5aca02a4d340c9a8edba9b67c8fbbd7f62503554a3cc3839d924c"},
-    {file = "datasette_dashboards-0.3.0-py3-none-any.whl", hash = "sha256:23baea1ff8b2b718a6cad90dce4a44f5b7cfeaa4fc28d112fabd4efc924c7584"},
+    {file = "datasette_dashboards-0.5.0-py3-none-any.whl", hash = "sha256:cc327c94624c3ccf923418d5f552a700f0f4c59e2a8835c766850cd9001b01a4"},
+    {file = "datasette_dashboards-0.5.0.tar.gz", hash = "sha256:5243b48de3a4870b5be8d1404bf19cfafdab41936f96e027b31e0e8cbedd4b65"},
 ]
 
 [package.dependencies]
 datasette = "*"
+datasette-leaflet = "*"
 datasette-render-markdown = "*"
-
-[package.extras]
-test = ["faker", "pytest", "pytest-asyncio", "sqlite-utils"]
 
 [[package]]
 name = "datasette-graphql"
@@ -522,6 +520,24 @@ files = [
 
 [package.dependencies]
 asgi-gzip = "*"
+datasette = "*"
+
+[package.extras]
+test = ["pytest", "pytest-asyncio"]
+
+[[package]]
+name = "datasette-leaflet"
+version = "0.2.2"
+description = "A plugin that bundles Leaflet.js for Datasette"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "datasette-leaflet-0.2.2.tar.gz", hash = "sha256:8fd4e634304be392ae6f7de770d4f22b95a37caecd676a35faeb6200da9423bc"},
+    {file = "datasette_leaflet-0.2.2-py3-none-any.whl", hash = "sha256:fd88c25666e7680b25b4c6e5546bd02c9f5836bbc0fee61042dbb6b93d4139f0"},
+]
+
+[package.dependencies]
 datasette = "*"
 
 [package.extras]
@@ -1681,4 +1697,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "e22fcc54a7eb7286e686cd1e621659e769aa5bbc1bc124b1deb81e1f36a41e91"
+content-hash = "1f6fa2482946cfbc256a2e28dde0b30b3af7502e80e784d1733e3ecf95e2434c"
