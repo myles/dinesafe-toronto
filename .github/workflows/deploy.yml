@@ -11,23 +11,8 @@ name: Deploy
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - id: start
-        name: "Get the start time in epoch 🎬"
-        run: echo "::set-output name=timestamp::$(date +'%s')"
 
-      - id: sentry-check-in
-        name: "⏲️ Check-in with Sentry"
-        env:
-          SENTRY_MONITOR_ID: ${{ secrets.SENTRY_MONITOR_ID }}
-          SENTRY_ORG_NAME: ${{ secrets.SENTRY_ORG_NAME }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-        run: |-
-          curl -X POST \
-            "https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/" \
-            --header "Authorization: DSN $SENTRY_DSN" \
-            --header "Content-Type: application/json" \
-            --data-raw '{"status": "in_progress"}'
+    steps:
 
       - id: checkout
         name: "Checkout 🛎"
@@ -101,14 +86,7 @@ jobs:
           ignore_empty: true
 
       - id: sentry-check-out
-        name: "⏲️ Checkout with Sentry"
-        env:
-          SENTRY_MONITOR_ID: ${{ secrets.SENTRY_MONITOR_ID }}
-          SENTRY_ORG_NAME: ${{ secrets.SENTRY_ORG_NAME }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        name: "⏲️ Send Heartbeat"
         run: |-
           curl -X POST \
-            "https://sentry.io/api/0/organizations/$SENTRY_ORG_NAME/monitors/$SENTRY_MONITOR_ID/checkins/latest/" \
-            --header "Authorization: DSN $SENTRY_DSN" \
-            --header "Content-Type: application/json" \
-            --data-raw "{\"status\": \"ok\", \"duration\": $(expr ${{ steps.start.outputs.timestamp }} - $(date +'%s'))}"
+            "https://betteruptime.com/api/v1/heartbeat/LqXrgg8oFkAtGhaHj731wgGf"
