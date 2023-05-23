@@ -18,7 +18,7 @@ datasette-gzip = "^0.2"
 datasette-publish-vercel = "^0.14.2"
 datasette-sentry = "^0.3"
 isort = "^5.12.0"
-requests = "^2.28.2"
+requests = "^2.31.0"
 sqlite-utils = "^3.30"
 
 [tool.poetry.group.dev.dependencies]
