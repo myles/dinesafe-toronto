@@ -10,7 +10,7 @@
       "source": "Toronto Public Health",
       "source_url": "https://open.toronto.ca/dataset/dinesafe/",
       "license": "Open Government License - Toronto",
-      "license_url": "https://open.toronto.ca/dataset/dinesafe/",
+      "license_url": "https://open.toronto.ca/open-data-license/",
       "tables": {
         "establishments": {
           "columns": {
